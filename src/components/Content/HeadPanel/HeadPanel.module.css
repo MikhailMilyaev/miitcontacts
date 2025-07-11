@@ -1,0 +1,21 @@
+.headPanel {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.enterBtn {
+    background-color: #C2E5FF;
+    border: none;                
+    border-radius: 15px;
+    padding: 10px 20px;          
+    font-size: 16px;             
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    text-decoration: none;
+    color: black;
+}
+
+.enterBtn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

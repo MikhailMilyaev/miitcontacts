@@ -1,0 +1,15 @@
+.department {
+    display: block;
+    padding: 10px;
+    border-radius: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.department:hover {
+    background-color: #C2E5FF;
+    cursor: pointer;
+}
+
+.department:active {
+    background-color: #C2E5FF;
+}

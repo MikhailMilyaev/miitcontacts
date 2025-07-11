@@ -1,0 +1,19 @@
+.header {
+    display: flex;          
+    align-items: center;    
+    gap: 10px;   
+}
+
+.menu {
+    font-size: 28px;
+    color: grey;
+}
+
+.menu:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.text {
+    font-size: 22px;
+}

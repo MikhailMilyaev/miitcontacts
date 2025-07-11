@@ -1,0 +1,6 @@
+.contacts {
+  height: calc(100% - 50px);
+  margin-top: 10px;
+  background: white;
+  border-radius: 10px;
+}
