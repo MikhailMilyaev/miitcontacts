@@ -10,6 +10,6 @@
     cursor: pointer;
 }
 
-.department:active {
+.active {
     background-color: #C2E5FF;
 }

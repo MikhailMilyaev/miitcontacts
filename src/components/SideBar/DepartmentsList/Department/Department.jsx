@@ -1,8 +1,13 @@
 import classes from './Department.module.css'
 
-const Department = ({ name }) => {
+const Department = ({ name, onClick, isActive }) => {
   return (
-    <div className={classes.department}>{name}</div>
+    <div
+      className={`${classes.department} ${isActive ? classes.active : ''}`}
+      onClick={onClick}
+    >
+      {name}
+    </div>
   )
 }
 

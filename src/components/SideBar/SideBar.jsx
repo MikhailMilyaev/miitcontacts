@@ -2,11 +2,11 @@ import DepartmentsList from './DepartmentsList/DepartmentsList'
 import SidebarHeader from './SideBarHeader/SideBarHeader'
 import classes from './SideBar.module.css'
 
-const SideBar = () => {
+const SideBar = ({ onSelectDepartment}) => {
   return (
     <div className={classes.sideBar}>
       <SidebarHeader />
-      <DepartmentsList />
+      <DepartmentsList onSelect={onSelectDepartment} />
     </div>
   )
 }
