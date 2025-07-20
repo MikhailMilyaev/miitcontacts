@@ -3,12 +3,12 @@ import classes from './Contact.module.css'
 const Contact = ({ employee }) => {
   return (
     <div className={classes.tableRow}>
-      <div>{employee.name}</div>
-      <div>{employee.mobile}</div>
-      <div>{employee.internal}</div>
-      <div>{employee.room}</div>
+      <div>{employee.fullName}</div>
+      <div>{employee.personalPhone}</div>
+      <div>{employee.businessPhone}</div>
+      <div>{employee.auditorium}</div>
       <div>{employee.email}</div>
-      <div>{employee.note || '-'}</div>
+      <div>{employee.info || '-'}</div>
     </div>
   )
 }

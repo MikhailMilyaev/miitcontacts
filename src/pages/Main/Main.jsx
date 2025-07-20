@@ -10,13 +10,13 @@ const Layout = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   
-  const fetchEmployees = async (departmentName) => {
-    setSelectedDepartment(departmentName);
+  const fetchEmployees = async (department) => {
+    setSelectedDepartment(department.name);
     setLoading(true);
     setError(false);
     try {
-      const response = await axios.get('', {
-        params: { department: departmentName },
+      const response = await axios.get('http://localhost:8080/api/department', {
+        params: { department_id: department.id }
       });
       setEmployees(response.data);
     } catch (err) {
@@ -29,7 +29,9 @@ const Layout = () => {
 
   return (
     <div className={classes.main}>
-        <SideBar onSelectDepartment={fetchEmployees}/>
+        <SideBar 
+          onSelectDepartment={fetchEmployees}
+          selectedDepartment={selectedDepartment}/>
         <Content
           department={selectedDepartment}
           employees={employees}
