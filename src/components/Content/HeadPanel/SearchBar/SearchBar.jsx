@@ -6,12 +6,10 @@ import { useState } from "react";
 const SearchBar = ({ value, onChange, onSearch }) => {
   const [isFocus, setIsFocus] = useState(false)
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      onSearch(value);
-      onChange({target:{value: ''}})
-    }
-  }
+  const handleChange = (event) => {
+    onChange(event);
+    onSearch(event.target.value);
+  };
 
   // const search = async (e) => {
   //   try {
@@ -33,7 +31,7 @@ const SearchBar = ({ value, onChange, onSearch }) => {
         placeholder='Поиск по ФИО или номеру кабинета'
         value={value} 
         onChange={onChange}
-        onKeyDown={handleKeyDown}
+        onKeyDown={handleChange}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         />

@@ -6,9 +6,10 @@ import Loader from '../Loader/Loader'
 import EmptyDepartment from '../EmptyDepartment/EmptyDepartment'
 
 const Contacts = ({ department, employees, loading, error }) => {
-  if (!department) {
+  if (!department && employees.length === 0 && !loading && !error) {
     return <div className={classes.contacts}><FirstScreen /></div>;
   }
+
 
   if (loading) {
     return <div className={classes.contacts}><Loader /></div>;
