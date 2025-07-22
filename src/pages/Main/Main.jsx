@@ -1,4 +1,5 @@
 import SideBar from '../../components/SideBar/SideBar'
+import SearchBar from '../../components/Content/HeadPanel/SearchBar/SearchBar'
 import Content from '../../components/Content/Content'
 import classes from './Main.module.css'
 import { useState } from 'react'
@@ -18,7 +19,23 @@ const Layout = () => {
       const response = await axios.get('http://localhost:8080/api/department', {
         params: { department_id: department.id }
       });
+      console.log(response.data);
       setEmployees(response.data);
+    } catch (err) {
+      setError(true);
+      setEmployees([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSearch = async (query) => {
+    setSelectedDepartment(null);  // Сбрасываем выбранный департамент
+    setLoading(true);
+    setError(false);
+    try {
+      const response = await axios.get(`http://localhost:8080/api/search?query=${query}`);
+      setEmployees(response.data);  // Обновляем сотрудников
     } catch (err) {
       setError(true);
       setEmployees([]);
@@ -33,6 +50,7 @@ const Layout = () => {
           onSelectDepartment={fetchEmployees}
           selectedDepartment={selectedDepartment}/>
         <Content
+          onSearch={handleSearch}
           department={selectedDepartment}
           employees={employees}
           loading={loading}

@@ -2,11 +2,11 @@ import HeadPanel from "./HeadPanel/HeadPanel"
 import classes from './Content.module.css'
 import Contacts from "./Contacts/Contacts"
 
-const Content = ({ department, employees, loading, error }) => {
+const Content = ({ department, employees, loading, error, onSearch }) => {
 
   return (
     <div className={classes.content}>
-        <HeadPanel />
+        <HeadPanel onSearch={onSearch} />
         <Contacts
           department={department}
           employees={employees}

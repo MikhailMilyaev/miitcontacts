@@ -10,9 +10,12 @@ const DepartmentsList = ({ onSelect, selectedDepartment }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
+
+
   useEffect(() => {
     axios.get('http://localhost:8080/api/department/departments')
-      .then(response => {
+      .then(response => { 
+        console.log(response.data);
         setDepartments(response.data);
         setError(false);
       })
