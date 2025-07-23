@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {$host, $authHost} from './index'
 import {jwtDecode} from 'jwt-decode'
 
@@ -8,7 +9,7 @@ export const signUp = async (email, password) => {
 }
 
 export const signIn = async (email, password) => {
-    const {data} = await $host.post('api/signin', {email, password})
+    const {data} = await axios.post('http://localhost:8080/api/signin', {email, password})
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }

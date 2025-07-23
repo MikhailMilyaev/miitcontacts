@@ -16,12 +16,13 @@ const HeadPanel = observer(({onSearch}) => {
   }
 
   const handleSearchChange = (event) => {
+    onSearch(event.target.value);
     setSearchInput(event.target.value)  
   }
   
   return (
     <div className={classes.headPanel}>
-      <SearchBar value={searchInput} onChange={handleSearchChange} onSearch={onSearch}/>
+      <SearchBar value={searchInput} onChange={handleSearchChange} />
       {user.isAuth ? 
       <NavLink to='/' className={classes.enterBtn} onClick={logOut}>Выход</NavLink>
       :

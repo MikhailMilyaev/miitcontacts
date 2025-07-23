@@ -3,24 +3,13 @@ import { IoCloseOutline } from "react-icons/io5";
 import classes from './SearchBar.module.css'
 import { useState } from "react";
 
-const SearchBar = ({ value, onChange, onSearch }) => {
+const SearchBar = ({ value, onChange, /*onSearch*/ }) => {
   const [isFocus, setIsFocus] = useState(false)
 
-  const handleChange = (event) => {
-    onChange(event);
-    onSearch(event.target.value);
-  };
-
-  // const search = async (e) => {
-  //   try {
-
-  //     const response = (await axios.get('http://localhost:8080/api/search?query=' + e));
-  //     console.log(response.data)
-
-  //   } finally {
-  //     console.log('here!')
-  //   }
-  // }
+  // const handleChange = (event) => {
+  //   onChange(event);
+  //   onSearch(event.target.value);
+  // };
 
   return (
     <div className={classes.inputContainer}>
@@ -31,7 +20,7 @@ const SearchBar = ({ value, onChange, onSearch }) => {
         placeholder='Поиск по ФИО или номеру кабинета'
         value={value} 
         onChange={onChange}
-        onKeyDown={handleChange}
+        // onKeyDown={handleChange}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         />
