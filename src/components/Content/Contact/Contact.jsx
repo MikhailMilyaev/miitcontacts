@@ -1,10 +1,10 @@
 import classes from './Contact.module.css';
 
-const Contact = ({ employee, onContextMenu }) => {
+const Contact = ({ employee, onContextMenu, key}) => {
   return (
     <div 
       className={classes.tableRow}
-      onContextMenu={(e) => onContextMenu(e, employee.id)}
+      onContextMenu={(e) => onContextMenu(e, key)}
     >
       <div>{employee.full_name}</div>
       <div>{employee.personal_phone}</div>
