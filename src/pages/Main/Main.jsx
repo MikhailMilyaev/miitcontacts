@@ -36,6 +36,7 @@ const Layout = () => {
     try {
       const response = await axios.get(`http://localhost:8080/api/search?query=${query}`);
       setEmployees(response.data);  // Обновляем сотрудников
+      console.log(response.data)
     } catch (err) {
       setError(true);
       setEmployees([]);

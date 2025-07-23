@@ -23,7 +23,14 @@ const SingUp = () => {
                     value={repeatPassword}
                     onChange={(e) => setRepeatPassword(e.target.value)}
                     placeholder='Подтвердите новый пароль' />
-                <SubmitButton />
+                
+                {errorMessage && (
+                    <div style={{ marginTop: '12px' }}>
+                        <FormErrorMessage message={errorMessage}/>
+                    </div>
+                )}
+
+                <SubmitButton type="submit">Зарегестрироваться</SubmitButton>
             </form>
         </div>
     );
