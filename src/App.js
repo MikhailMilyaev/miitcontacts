@@ -5,28 +5,30 @@ import Main from './pages/Main/Main'
 import { Context } from './index';
 import { useContext, useState, useEffect } from 'react';
 import {observer} from 'mobx-react-lite'
-import { check } from './http/UserApi';
+import ActivatePage from './pages/Auth/Activate/ActivatePage';
+// import { check } from './http/UserApi';
 
 const App = observer(() => {
   const {user} = useContext(Context)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    check().then(data => {
-      user.setUser(data)
-      user.setIsAuth(true)
-    })
-    .catch(err => user.setIsAuth(false))
-    .finally(() => setLoading(false))
-  }, [])
+  // useEffect(() => {
+  //   check().then(data => {
+  //     user.setUser(data)
+  //     user.setIsAuth(true)
+  //   })
+  //   .catch(err => user.setIsAuth(false))
+  //   .finally(() => setLoading(false))
+  // }, [])
 
-  if (loading) {
-    return 'Loading'
-  }
+  // if (loading) {
+  //   return 'Loading'
+  // }
   return (
     <Routes>
       <Route path='/' element={<Main />}/>
       <Route path='/signin' element={<SignIn />}/>
+      <Route path='/activation' element={<ActivatePage />}/>
       <Route path='/recovery' element={<Recovery />}/>
     </Routes>
   );

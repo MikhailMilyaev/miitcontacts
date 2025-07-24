@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import classes from './ActivatePage.module.css'
-import FormInput from '../../components/Auth/FormInput/FormInput'
-import FormInputPassword from '../../components/Auth/FormInputPassword/FormInputPassword'
-import FormErrorMessage from '../../components/Auth/FormErrorMessage/FormErrorMessage'
-import SubmitButton from '../../components/Auth/SubmitButton/SubmitButton'
+import FormInput from '../../../components/Auth/FormInput/FormInput'
+import FormInputPassword from '../../../components/Auth/FormInputPassword/FormInputPassword'
+import FormErrorMessage from '../../../components/Auth/FormErrorMessage/FormErrorMessage'
+import SubmitButton from '../../../components/Auth/SubmitButton/SubmitButton'
 
 const ActivatePage = () => {
   const [searchParams] = useSearchParams()
-  const [email, setEmail] = useState('')
+  // const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -17,25 +17,26 @@ const ActivatePage = () => {
   const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
 
-  const key = searchParams.get('key')
+  const userId = searchParams.get('userId')
 
   useEffect(() => {
-    if (!key) {
-      setErrorMessage('Ссылка недействительна: отсутствует ключ')
+    if (!userId) {
+      setErrorMessage('Ссылка недействительна: отсутствует ключ')  // navigate --> основная страница, какой-нибудь warn
       setLoading(false)
       return
     }
-
-    axios.get(`/api/invite/check?key=${key}`)
-      .then(response => {
-        setEmail(response.data.email)
-        setLoading(false)
-      })
-      .catch(() => {
-        setErrorMessage('Ссылка устарела или недействительна')
-        setLoading(false)
-      })
-  }, [key])
+    setLoading(false)
+    /* ----------------------- Зачем почта? ------------------------- */
+    // axios.get(`http://localhost:8080/api/invite/check?userId=${userId}`)
+    //   .then(response => {
+    //     setEmail(response.data.email)
+    //     setLoading(false)
+    //   })
+    //   .catch(() => {
+    //     setErrorMessage('Ссылка устарела или недействительна')
+    //     setLoading(false)
+    //   })
+    }, [userId])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -52,7 +53,8 @@ const ActivatePage = () => {
 
     try {
       setSubmitting(true)
-      await axios.post('/api/invite/confirm', { key, password })
+      console.log(typeof(userId), typeof(password))
+      await axios.post('http://localhost:8080/api/manager/signup', { userId , password, confirmPassword})
       navigate('/signin')
     } catch (error) {
       if (error.response?.data?.message) {
@@ -71,12 +73,12 @@ const ActivatePage = () => {
     <div className={classes.container}>
       <h2 className={classes.title}>Регистрация менеджера</h2>
       <form onSubmit={handleSubmit}>
-        <FormInput
+        {/* <FormInput
           type="email"
           value={email}
           disabled
           placeholder="Электронная почта"
-        />
+        /> */}
 
         <FormInputPassword
           value={password}
@@ -97,7 +99,7 @@ const ActivatePage = () => {
         />
 
         {errorMessage && (
-          <div style={{ marginTop: '12px' }}>
+          <div style={{ marginTop: '26px' }}>
             <FormErrorMessage message={errorMessage} />
           </div>
         )}

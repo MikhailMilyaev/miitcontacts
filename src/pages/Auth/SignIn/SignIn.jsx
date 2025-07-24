@@ -35,30 +35,28 @@ const SignIn = observer(() => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    
-    if (!validateInputs()) return
+  e.preventDefault()
 
-    setIsLoading(true)
+  if (!validateInputs()) return
 
-    try {
-      const data = await signIn(email, password) 
-      user.setUser(data)
-      user.setIsAuth(true)
-      navigate('/')
-    } catch (error) {
-      console.error('Ошибка при авторизации:', error)
-      if (error.response) {
-        setErrorMessage(error.response.data.message || 'Неверный email или пароль')
-      } else if (error.request) {
-        setErrorMessage('Сервер недоступен')
-      } else {
-        setErrorMessage('Произошла ошибка при отправке запроса')
-      }
-    } finally {
-      setIsLoading(false)
+  setIsLoading(true)
+
+  try {
+    const data = await signIn(email, password)
+    user.setUser(data)       // теперь user = {role, userId, departmentId}
+    user.setIsAuth(true)
+    navigate('/')
+  } catch (error) {
+    console.error('Ошибка при авторизации:', error)
+    if (error.response) {
+      setErrorMessage(error.response.data.error || 'Неверный email или пароль')
+    } else {
+      setErrorMessage('Ошибка подключения к серверу')
     }
+  } finally {
+    setIsLoading(false)
   }
+}
 
   return (
     <div className={classes.container}>

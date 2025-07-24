@@ -32,7 +32,7 @@ const Contacts = ({ department, employees, loading, error }) => {
     setContextMenu(prev => ({ ...prev, visible: false }));
     
     if (action === 'assign') {
-      console.log('http://localhost:8080/api/manager/assign?userId=' + contextMenu.employee.contacts_id +
+      console.log('http://localhost:8080/api/manager/assign?contactsId=' + contextMenu.employee.contacts_id +
                                   '&email=' + contextMenu.employee.email)
       const response = axios.post('http://localhost:8080/api/manager/assign?contactId=' + contextMenu.employee.contacts_id +
                                   '&email=' + contextMenu.employee.email)
