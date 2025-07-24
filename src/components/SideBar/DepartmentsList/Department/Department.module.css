@@ -13,3 +13,10 @@
 .active {
     background-color: #C2E5FF;
 }
+
+.star {
+  margin-left: 8px;
+  color: gold;
+  font-size: 1rem;
+  vertical-align: middle;
+}

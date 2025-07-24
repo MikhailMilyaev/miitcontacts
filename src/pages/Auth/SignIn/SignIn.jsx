@@ -43,8 +43,10 @@ const SignIn = observer(() => {
 
   try {
     const data = await signIn(email, password)
-    user.setUser(data)       // теперь user = {role, userId, departmentId}
+    data.role = data.role.toUpperCase()
+    user.setUser(data)      
     user.setIsAuth(true)
+    localStorage.setItem('user', JSON.stringify(data))
     navigate('/')
   } catch (error) {
     console.error('Ошибка при авторизации:', error)

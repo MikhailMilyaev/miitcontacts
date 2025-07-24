@@ -6,7 +6,7 @@ const Content = ({ department, employees, loading, error, onSearch }) => {
 
   return (
     <div className={classes.content}>
-        <HeadPanel onSearch={onSearch} />
+        <HeadPanel onSearch={onSearch} department={department}/>
         <Contacts
           department={department}
           employees={employees}

@@ -23,4 +23,15 @@ export default class UserStore {
         return this._user
     }
 
+    get isAdmin() {
+        return this._user.role === 'ADMIN'
+    }
+
+    get isManager() {
+        return this._user.role === 'MANAGER'
+    }
+
+    get departmentId() {
+        return this._user.department_id
+    }
 }
