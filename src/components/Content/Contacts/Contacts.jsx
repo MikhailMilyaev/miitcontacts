@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { $host } from '../../../http/index';
 import axios from 'axios';
 import classes from './Contacts.module.css';
@@ -38,6 +38,17 @@ const Contacts = ({ department, employees, loading, error }) => {
                                   '&email=' + contextMenu.employee.email)
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setContextMenu(prev => ({ ...prev, visible: false }));
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   if (!department && employees.length === 0 && !loading && !error) {
     return <div className={classes.contacts}><FirstScreen /></div>;
