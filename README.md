@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Внутренний телефонный справочник ИУЦТ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**MIIT Contacts** — учебный проект в рамках университета, веб‑приложение для внутреннего телефонного справочника Института управления и цифровых технологий (ИУЦТ).  
+Система позволяет сотрудникам быстро находить контакты коллег, а администраторам и менеджерам подразделений — поддерживать справочник в актуальном состоянии.
 
-## Available Scripts
+Проект реализован на **React** с использованием **React Router**, **MobX** и **Axios**, взаимодействует с REST API бэкенда и поддерживает ролевую модель доступа (администратор, менеджер подразделения, обычный пользователь).
 
-In the project directory, you can run:
+## Основные возможности
 
-### `npm start`
+### 🔎 Поиск и просмотр контактов
+- Панель поиска по **ФИО** и **номеру кабинета**.
+- Список подразделений в левой колонке; выбор подразделения подгружает контакты через API.
+- Табличное отображение контактов:
+  - ФИО  
+  - мобильный телефон  
+  - внутренний номер  
+  - кабинет  
+  - почта  
+  - примечание / дополнительная информация
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 👤 Роли и права доступа
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Обычный пользователь
+- Просмотр структурированных контактных данных по подразделениям.
+- Поиск сотрудников по ключевым полям.
 
-### `npm test`
+#### Менеджер подразделения
+- Авторизация через отдельную ссылку‑приглашение и страницу активации (задаёт пароль).  
+- Может редактировать и удалять контакты **только своего подразделения**.
+- Подразделение менеджера отмечено значком ⭐ в списке отделов.
+- Контакт менеджера в списке сотрудников также помечен ⭐.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Администратор
+- Имеет доступ ко всем подразделениям.
+- Через контекстное меню строки контакта может:
+  - **назначить менеджера** подразделения (отправить ссылку‑приглашение на почту),
+  - **изменить** контакт,
+  - **удалить** контакт.
+- Отвечает за поддержку структуры подразделений и выдачу прав.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Аутентификация и безопасность
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Форма входа с проверкой корректности email и длины пароля.
+- Хранение сведений о пользователе в MobX‑сторе и localStorage для восстановления сессии.
+- Поддержка страницы восстановления пароля (email‑сценарий может быть подключён на стороне бэкенда).
+- Разделение интерфейса и функций в зависимости от роли (ADMIN / MANAGER / пользователь).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Скриншоты интерфейса
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1 — Стартовая страница (отдел не выбран)
+![Стартовая страница](./screens/noState.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2 — Выбран отдел, отображение списка контактов
+![Список контактов отдела](./screens/chooseState.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+### 3 — Интерфейс менеджера отдела
+Менеджер видит своё подразделение со звёздочкой и может редактировать/удалять контакты в нём.
+![Роль менеджера](./screens/manager.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 4 — Интерфейс администратора
+Администратор дополнительно может назначать менеджера для контакта и управлять всеми записями.
+![Роль администратора](./screens/admin.png)
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Назначение проекта
 
-### Analyzing the Bundle Size
+Проект разработан как **учебное задание в рамках университета** и демонстрирует:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- построение одностраничного приложения на React с маршрутизацией и управлением состоянием,
+- работу с ролевой моделью доступа и разграничением прав в интерфейсе,
+- интеграцию с REST API, загрузку данных по отделам и поиск по сотрудникам,
+- реализацию удобного корпоративного интерфейса для внутреннего телефонного справочника.
