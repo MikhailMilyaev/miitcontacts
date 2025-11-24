@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Department from './Department/Department';
 import classes from './DepartmentsList.module.css';
 import axios from 'axios';
 import FetchError from '../../Content/FetchError/FetchError';
-import Loader from '../../Content/Loader/Loader'
+import Loader from '../../Content/Loader/Loader';
+import { Context } from '../../../index';
+import { FaStar } from 'react-icons/fa';
 
 const DepartmentsList = ({ onSelect, selectedDepartment }) => {
   const [departments, setDepartments] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { user } = useContext(Context);
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/department/departments')
@@ -38,6 +41,7 @@ const DepartmentsList = ({ onSelect, selectedDepartment }) => {
           name={dep.name} 
           onClick={() => onSelect(dep)} 
           isActive={selectedDepartment === dep.name}
+          isManagerDepartment={user?.user?.role === 'MANAGER' && user?.user?.department_id === dep.id}
         />
       ))}
     </div>

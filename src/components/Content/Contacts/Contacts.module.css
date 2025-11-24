@@ -28,3 +28,56 @@
 .row > div:first-child {
   justify-content: flex-start;
 }
+
+.contextMenu {
+  position: fixed;
+  background-color: #1e1e1e;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 120px;
+  padding: 4px 0;
+}
+
+.menuItem {
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background-color: #3a3a3a;
+}
+
+.iconStar { color: #ffcc00; }
+.iconPen { color: #ffffff; }
+.iconTrash { color: #ff4444; }
+
+.editPanel {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.saveBtn {
+  background: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cancelBtn {
+  background: #f44336;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
